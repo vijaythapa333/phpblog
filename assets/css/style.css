@@ -1,0 +1,41 @@
+/*
+    Author: Vijay Thapa;
+    Theme: PHP BLOG;
+    Version: 1.0;
+*/
+
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: sans-serif,arial,helvetica;
+}
+
+/* CSS FOR MENU */
+nav{
+    text-align: center;
+    padding: 2%;
+    
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav ul li{
+    display: inline;
+}
+
+/* CSS for Main Section */
+.main{
+    width: 80%;
+    border: 1px solid black;
+    padding: 3%;
+    margin: 5% auto;
+}
+
+
+/* CSS for FOOTER */
+footer{
+    text-align: center;
+    padding: 2%;
+}
