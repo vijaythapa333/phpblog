@@ -31,9 +31,34 @@
     <section class="main">
         <h1>User Page</h1>
         
-        <p>
-            You'll Manage Backend from this section.
-        </p>
+        <!--Displaying Users Here-->
+        <table>
+            <tr>
+                <td colspan="5">
+                    <a href="add_user.php">Add User</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>S.N.</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Is Active?</th>
+                <th>Actions</th>
+            </tr>
+            
+            <tr>
+                <td>1.</td>
+                <td>Vijay Thapa</td>
+                <td>vijay</td>
+                <td>Yes</td>
+                <td>
+                    <a href="#">Edit</a> 
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <!--Displaying Users Ends-->
     </section>
     <!-- Main Content Starts Here -->
         
