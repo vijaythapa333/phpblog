@@ -55,6 +55,14 @@
                 </tr>
                 
                 <tr>
+                    <td>Is Active?</td>
+                    <td>
+                        <input type="radio" name="is_active" value="1" /> Yes
+                        <input type="radio" name="is_active" value="0" /> No
+                    </td>
+                </tr>
+                
+                <tr>
                     <td colspan="2">
                         <input type="submit" name="submit" value="Add User" />
                     </td>
