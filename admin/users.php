@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +35,14 @@
         <h1>User Page</h1>
         
         <!--Displaying Users Here-->
+        <?php 
+            //Check if the SESSION is SET or Not
+            if(isset($_SESSION['add_success']))
+            {
+                echo $_SESSION['add_success'];
+                unset($_SESSION['add_success']);
+            }
+        ?>
         <table>
             <tr>
                 <td colspan="5">
@@ -47,16 +58,62 @@
                 <th>Actions</th>
             </tr>
             
-            <tr>
-                <td>1.</td>
-                <td>Vijay Thapa</td>
-                <td>vijay</td>
-                <td>Yes</td>
-                <td>
-                    <a href="#">Edit</a> 
-                    <a href="#">Delete</a>
-                </td>
-            </tr>
+            <?php 
+                //Displaying All the Users from DAtabase
+                //Database Connect
+                $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+                
+                //DAtabase Selection
+                $db_select = mysqli_select_db($conn, 'db_phpblog');
+                
+                //Query to Display Users
+                $query = "SELECT * FROM tbl_users";
+                
+                //Execute Query
+                $res = mysqli_query($conn,$query);
+                
+                //Check if the query executed Successfully or not
+                if($res==true)
+                {
+                    //Checking the Number of Rows in tbl_users Table
+                    $num_rows = mysqli_num_rows($res); 
+                    
+                    //Display users in TAble if num_rows is greater thatn 0
+                    if($num_rows>0)
+                    {
+                        //Has Users in Database
+                        while($row=mysqli_fetch_assoc($res))
+                        {
+                            $user_id = $row['user_id'];
+                            $full_name = $row['full_name'];
+                            $username = $row['username'];
+                            $is_active = $row['is_active'];
+                            ?>
+                            <tr>
+                                <td><?php echo $user_id; ?>.</td>
+                                <td><?php echo $full_name; ?></td>
+                                <td><?php echo $username; ?></td>
+                                <td><?php echo $is_active; ?></td>
+                                <td>
+                                    <a href="#">Edit</a> 
+                                    <a href="#">Delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        //No Users Added Yet
+                    }
+                }
+                
+                
+                
+                
+            ?>
+            
+            
         </table>
         <!--Displaying Users Ends-->
     </section>

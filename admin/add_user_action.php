@@ -1,4 +1,8 @@
 <?php 
+
+    //Start SESSION
+    session_start();
+    
     if(isset($_POST['submit']))
     {
         
@@ -39,12 +43,22 @@
         if($res==true)
         {
             //User Successfully Inserted
-            echo "User Added Successfully";
+            //echo "User Added Successfully";
+            //Create SESSIOn VARIABLE and SET ITS VALUE
+            $_SESSION['add_success']="User Added Successfully";
+            
+            //Redirect to Users Page
+            header('location:http://localhost:81/phpblog/admin/users.php');
+            
         }
         else
         {
             //Failed to Insert User
-            echo "Failed to Add User";
+            //echo "Failed to Add User";
+            $_SESSION['add_fail'] = "Failed to Add User";
+            
+            //REdirect toAdd User Page
+            header('location:http://localhost:81/phpblog/admin/add_user.php');
         }
         
         

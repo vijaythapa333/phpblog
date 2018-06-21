@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +36,13 @@
         <h1>Add User Page</h1>
         
         <!-- inserting User Details -->
+        <?php 
+            if(isset($_SESSION['add_fail']))
+            {
+                echo $_SESSION['add_fail'];
+                unset($_SESSION['add_fail']);
+            }
+        ?>
         <form method="post" action="add_user_action.php">
             <table>
                 <tr>
