@@ -93,9 +93,20 @@
                                 <td><?php echo $user_id; ?>.</td>
                                 <td><?php echo $full_name; ?></td>
                                 <td><?php echo $username; ?></td>
-                                <td><?php echo $is_active; ?></td>
                                 <td>
-                                    <a href="#">Edit</a> 
+                                    <?php 
+                                        if($is_active==1)
+                                        {
+                                            echo "Yes";
+                                        }
+                                        else
+                                        {
+                                            echo "No";
+                                        }
+                                     ?>
+                                 </td>
+                                <td>
+                                    <a href="http://localhost:81/phpblog/admin/update_user.php?user_id=<?php echo $user_id; ?>">Edit</a> 
                                     <a href="#">Delete</a>
                                 </td>
                             </tr>
