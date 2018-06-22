@@ -43,7 +43,7 @@
                 unset($_SESSION['add_success']);
             }
         ?>
-        <table>
+        <table style="width: 100%; text-align: left;">
             <tr>
                 <td colspan="5">
                     <a href="add_user.php">Add User</a>
