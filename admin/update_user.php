@@ -83,7 +83,7 @@
                 unset($_SESSION['add_fail']);
             }
         ?>
-        <form method="post" action="add_user_action.php">
+        <form method="post" action="update_user_action.php">
             <table>
                 <tr>
                     <td>Full Name</td>
@@ -115,6 +115,7 @@
                 
                 <tr>
                     <td colspan="2">
+                        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
                         <input type="submit" name="submit" value="Update User" />
                     </td>
                 </tr>
