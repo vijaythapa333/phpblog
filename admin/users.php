@@ -37,10 +37,39 @@
         <!--Displaying Users Here-->
         <?php 
             //Check if the SESSION is SET or Not
+            //Display Add Success Message
             if(isset($_SESSION['add_success']))
             {
                 echo $_SESSION['add_success'];
                 unset($_SESSION['add_success']);
+            }
+            //Display Update Success Message
+            if(isset($_SESSION['update_success']))
+            {
+                echo $_SESSION['update_success'];
+                unset($_SESSION['update_success']);
+            }
+            //Display Update Fail Message
+            if(isset($_SESSION['update_fail']))
+            {
+                echo $_SESSION['update_fail'];
+                unset($_SESSION['update_fail']);
+            
+            } 
+            
+            //Display Update Fail Message
+            if(isset($_SESSION['delete_success']))
+            {
+                echo $_SESSION['delete_success'];
+                unset($_SESSION['delete_success']);
+            
+            }
+            //Display Update Fail Message
+            if(isset($_SESSION['delete_fail']))
+            {
+                echo $_SESSION['delete_fail'];
+                unset($_SESSION['delete_fail']);
+            
             }
         ?>
         <table style="width: 100%; text-align: left;">
@@ -107,7 +136,7 @@
                                  </td>
                                 <td>
                                     <a href="http://localhost:81/phpblog/admin/update_user.php?user_id=<?php echo $user_id; ?>">Edit</a> 
-                                    <a href="#">Delete</a>
+                                    <a href="http://localhost:81/phpblog/admin/delete_user.php?user_id=<?php echo $user_id; ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php

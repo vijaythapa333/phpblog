@@ -1,5 +1,7 @@
 <?php 
     //echo "Update User Action PAge";
+    //SESSION START
+    session_start();
     if(isset($_POST['submit']))
     {
         //echo "Button Clicked";
@@ -32,7 +34,9 @@
             username = '$username',
             email = '$email',
             password = '$password',
-            updated_at = '$updated_at' WHERE 
+            updated_at = '$updated_at',
+            is_active='$is_active'
+             WHERE 
             user_id = '$user_id'
         ";
         //Executing Query
@@ -41,12 +45,19 @@
         if($res==true)
         {
             //Successfully Updated
-            echo "Updated SUccessfully";
+            //echo "Updated SUccessfully";
+            $_SESSION['update_success'] = "Users Successfully Updated";
+            //Redirect to the Users Page
+            header('location:http://localhost:81/phpblog/admin/users.php');
         }
         else
         {
             //Failed to Update
-            echo "Failed to Update";
+            //echo "Failed to Update";
+            $_SESSION['update_fail'] = "Failed to Update User";
+            
+            //Redirect to Users Page
+            header('location:http://localhost:81/phpblog/admin/users.php');
         }
     }
     else
