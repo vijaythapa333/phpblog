@@ -31,9 +31,33 @@
     <section class="main">
         <h1>Categories Page</h1>
         
-        <p>
-            You'll Manage Backend from this section.
-        </p>
+        <!-- Displaying Categories in Table -->
+        <table>
+            <tr>
+                <td colspan="">
+                    <a href="add_category.php">Add Category</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>S.N.</th>
+                <th>Category Title</th>
+                <th>Is Active?</th>
+                <th>Include In Menu?</th>
+                <th>Actions</th>
+            </tr>
+            
+            <tr>
+                <td>1. </td>
+                <td>Sports</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        </table>
     </section>
     <!-- Main Content Starts Here -->
         
