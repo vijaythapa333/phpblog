@@ -1,4 +1,6 @@
-
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +34,13 @@
     <section class="main">
         <h1>Add Category Page</h1>
         
+        <?php 
+            if(isset($_SESSION['add_fail']))
+            {
+                echo $_SESSION['add_fail'];
+                unset($_SESSION['add_fail']);
+            }
+        ?>
         <!-- inserting Category Details -->
         
         <form method="post" action="add_category_action.php">

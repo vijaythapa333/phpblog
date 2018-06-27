@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,6 +33,14 @@
     <!-- Main Content Starts Here -->
     <section class="main">
         <h1>Categories Page</h1>
+        
+        <?php 
+            if(isset($_SESSION['add_success']))
+            {
+                echo $_SESSION['add_success'];
+                unset($_SESSION['add_success']);
+            }
+        ?>
         
         <!-- Displaying Categories in Table -->
         <table>
