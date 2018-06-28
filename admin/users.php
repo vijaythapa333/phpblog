@@ -57,14 +57,14 @@
             
             } 
             
-            //Display Update Fail Message
+            //Display Delete Success Message
             if(isset($_SESSION['delete_success']))
             {
                 echo $_SESSION['delete_success'];
                 unset($_SESSION['delete_success']);
             
             }
-            //Display Update Fail Message
+            //Display Delete Fail Message
             if(isset($_SESSION['delete_fail']))
             {
                 echo $_SESSION['delete_fail'];
@@ -110,6 +110,7 @@
                     //Display users in TAble if num_rows is greater thatn 0
                     if($num_rows>0)
                     {
+                        $sn = 1;
                         //Has Users in Database
                         while($row=mysqli_fetch_assoc($res))
                         {
@@ -119,7 +120,7 @@
                             $is_active = $row['is_active'];
                             ?>
                             <tr>
-                                <td><?php echo $user_id; ?>.</td>
+                                <td><?php echo $sn++; ?>.</td>
                                 <td><?php echo $full_name; ?></td>
                                 <td><?php echo $username; ?></td>
                                 <td>

@@ -40,10 +40,23 @@
                 echo $_SESSION['add_success'];
                 unset($_SESSION['add_success']);
             }
+            //Display Update Success Message
+            if(isset($_SESSION['update_success']))
+            {
+                echo $_SESSION['update_success'];
+                unset($_SESSION['update_success']);
+            }
+            //Display Update Fail Message
+            if(isset($_SESSION['update_fail']))
+            {
+                echo $_SESSION['update_fail'];
+                unset($_SESSION['update_fail']);
+            
+            }
         ?>
         
         <!-- Displaying Categories in Table -->
-        <table>
+        <table style="width: 100%; text-align: left;">
             <tr>
                 <td colspan="">
                     <a href="add_category.php">Add Category</a>
@@ -58,16 +71,87 @@
                 <th>Actions</th>
             </tr>
             
-            <tr>
-                <td>1. </td>
-                <td>Sports</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>
-                    <a href="#">Edit</a>
-                    <a href="#">Delete</a>
-                </td>
-            </tr>
+            <?php 
+            
+                //Displaying all Users Here
+                //Database Connect
+                $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+                
+                //DAtabase Selection
+                $db_select = mysqli_select_db($conn, 'db_phpblog');
+                
+                //Query to Display Users
+                $query = "SELECT * FROM tbl_categories";
+                
+                //Execute Query
+                $res = mysqli_query($conn,$query);
+                
+                //Check if the query executed Successfully or not
+                if($res==true)
+                {
+                    //Checking the Number of Rows in tbl_users Table
+                    $num_rows = mysqli_num_rows($res); 
+                    
+                    //Display users in TAble if num_rows is greater thatn 0
+                    if($num_rows>0)
+                    {
+                        $sn = 1;
+                        //Has Users in Database
+                        while($row=mysqli_fetch_assoc($res))
+                        {
+                            $category_id = $row['category_id'];
+                            $category_title = $row['category_title'];
+                            $include_in_menu = $row['include_in_menu'];
+                            $is_active = $row['is_active'];
+                            ?>
+                            <tr>
+                                <td><?php echo $sn++; ?>.</td>
+                                <td><?php echo $category_title; ?></td>
+                                <td>
+                                    <?php 
+                                        if($is_active==1)
+                                        {
+                                            echo "Yes";
+                                        }
+                                        else
+                                        {
+                                            echo "No";
+                                        }
+                                     ?>
+                                 </td>
+                                <td>
+                                    <?php 
+                                        if($include_in_menu==1)
+                                        {
+                                            echo "Yes";
+                                        }
+                                        else
+                                        {
+                                            echo "No";
+                                        }
+                                     ?>
+                                 </td>
+                                <td>
+                                    <a href="http://localhost:81/phpblog/admin/update_category.php?category_id=<?php echo $category_id; ?>">Edit</a> 
+                                    <a href="http://localhost:81/phpblog/admin/delete_category.php?user_id=<?php echo $category_id; ?>">Delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        //No Users Added Yet
+                        echo "No Categories Added Yet.";
+                    }
+                }
+                
+                
+                
+                
+            ?>
+            
+            
         </table>
     </section>
     <!-- Main Content Starts Here -->
