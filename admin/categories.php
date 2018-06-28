@@ -53,6 +53,20 @@
                 unset($_SESSION['update_fail']);
             
             }
+            //Display Delete Success Message
+            if(isset($_SESSION['delete_success']))
+            {
+                echo $_SESSION['delete_success'];
+                unset($_SESSION['delete_success']);
+            
+            }
+            //Display Delete Fail Message
+            if(isset($_SESSION['delete_fail']))
+            {
+                echo $_SESSION['delete_fail'];
+                unset($_SESSION['delete_fail']);
+            
+            }
         ?>
         
         <!-- Displaying Categories in Table -->
@@ -133,7 +147,7 @@
                                  </td>
                                 <td>
                                     <a href="http://localhost:81/phpblog/admin/update_category.php?category_id=<?php echo $category_id; ?>">Edit</a> 
-                                    <a href="http://localhost:81/phpblog/admin/delete_category.php?user_id=<?php echo $category_id; ?>">Delete</a>
+                                    <a href="http://localhost:81/phpblog/admin/delete_category.php?category_id=<?php echo $category_id; ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php
