@@ -31,9 +31,31 @@
     <section class="main">
         <h1>Blogs Page</h1>
         
-        <p>
-            You'll Manage Backend from this section.
-        </p>
+        <!--Dispaying all Blogs Here-->
+        <table>
+            <tr>
+                <td colspan="4">
+                    <a href="add_blog.php">Add Blog</a>
+                </td>
+            </tr>
+            <tr>
+                <th>S.N.</th>
+                <th>Blog Title</th>
+                <th>Is Active?</th>
+                <th>Actions</th>
+            </tr>
+            
+            <tr>
+                <td>1.</td>
+                <td>Test Title</td>
+                <td>Yes</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        </table>
+        
     </section>
     <!-- Main Content Starts Here -->
         
