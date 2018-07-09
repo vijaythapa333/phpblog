@@ -52,7 +52,7 @@
                 
                 <tr>
                     <td>Blog Description</td>
-                    <td><textarea name="category_description"></textarea></td>
+                    <td><textarea name="blog_description"></textarea></td>
                 </tr>
                 
                 <tr>

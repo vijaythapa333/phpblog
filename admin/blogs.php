@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +35,13 @@
         <h1>Blogs Page</h1>
         
         <!--Dispaying all Blogs Here-->
+        <?php 
+            if(isset($_SESSION['add_success']))
+            {
+                echo $_SESSION['add_success'];
+                unset($_SESSION['add_success']);
+            }
+        ?>
         <table>
             <tr>
                 <td colspan="4">
