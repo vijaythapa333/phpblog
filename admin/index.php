@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header('location:http://localhost:81/phpblog/admin/login.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,12 +30,24 @@
                 <li>
                     <a href="blogs.php">Blogs</a>
                 </li>
+                <li>
+                    <a href="logout.php">Log Out</a>
+                </li>
             </ul>
         </nav>
     <!-- Menu Ends From Here -->
         
     <!-- Main Content Starts Here -->
     <section class="main">
+    
+        <?php
+            if(isset($_SESSION['login_success']))
+            {
+                echo $_SESSION['login_success'];
+                unset($_SESSION['login_success']);
+            }
+        ?>
+        
         <h1>Welcome to Admin Panel</h1>
         
         <p>

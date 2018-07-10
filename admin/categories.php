@@ -1,5 +1,9 @@
 <?php 
     session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header('location:http://localhost:81/phpblog/admin/login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +29,9 @@
                 </li>
                 <li>
                     <a href="blogs.php">Blogs</a>
+                </li>
+                <li>
+                    <a href="logout.php">Log Out</a>
                 </li>
             </ul>
         </nav>

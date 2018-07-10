@@ -2,6 +2,10 @@
 
     //Start SESSION
     session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header('location:http://localhost:81/phpblog/admin/login.php');
+    }
     
     if(isset($_POST['submit']))
     {

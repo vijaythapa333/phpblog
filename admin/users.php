@@ -26,6 +26,9 @@
                 <li>
                     <a href="blogs.php">Blogs</a>
                 </li>
+                <li>
+                    <a href="logout.php">Log Out</a>
+                </li>
             </ul>
         </nav>
     <!-- Menu Ends From Here -->

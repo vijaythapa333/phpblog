@@ -39,3 +39,27 @@ footer{
     text-align: center;
     padding: 2%;
 }
+
+/*CSS for Login*/
+.main fieldset{
+    width: 30%;
+    margin: 5% auto;
+    padding: 2%;
+    line-height: 30px;
+    text-align: center;
+}
+
+.main .btn-submit{
+    padding: 2%;
+}
+
+
+
+
+
+
+
+
+
+
+

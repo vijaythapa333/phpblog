@@ -1,5 +1,9 @@
 <?php 
     session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header('location:http://localhost:81/phpblog/admin/login.php');
+    }
     //echo "Deete User PAge";
     //GEtting user_id from Users.php PAge
     if(isset($_GET['user_id']))
