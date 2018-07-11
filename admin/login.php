@@ -49,7 +49,8 @@
             //SQL Query
             $query = "SELECT * FROM tbl_users WHERE 
                 username ='$username' AND 
-                password = '$password'
+                password = '$password' AND 
+                is_active = 1
             ";
             //Execute Query
             $res = mysqli_query($conn,$query);

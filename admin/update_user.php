@@ -1,6 +1,10 @@
 <?php 
     session_start();
-    
+    //Check whether the user is logged in or not
+    if(!isset($_SESSION['user']))
+    {
+        header('location:http://localhost:81/phpblog/admin/login.php');
+    }
     //Getting GET value from URL
     if(isset($_GET['user_id']))
     {
