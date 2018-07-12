@@ -2,9 +2,10 @@
 
     //Start SESSION
     session_start();
+    include('../config/constants.php');
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
     
     if(isset($_POST['submit']))
@@ -28,10 +29,10 @@
         $created_at = date('Y-m-d H:i:s');
         
         //Connectng Database
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
         
         //Selecting Database
-        $db_select = mysqli_select_db($conn,'db_phpblog');
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         //Query to Insert Data into Database
         $query = "INSERT INTO tbl_users SET full_name='$full_name', 
@@ -52,7 +53,7 @@
             $_SESSION['add_success']="User Added Successfully";
             
             //Redirect to Users Page
-            header('location:http://localhost:81/phpblog/admin/users.php');
+            header('location:'.SITEURL.'admin/users.php');
             
         }
         else
@@ -62,7 +63,7 @@
             $_SESSION['add_fail'] = "Failed to Add User";
             
             //REdirect toAdd User Page
-            header('location:http://localhost:81/phpblog/admin/add_user.php');
+            header('location:'.SITEURL.'admin/add_user.php');
         }
         
         

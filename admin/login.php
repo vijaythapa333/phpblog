@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    include('../config/constants.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +44,9 @@
             $password = $_POST['password'];
             
             //DAtabase Connection 
-            $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+            $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
             //DAtabase Selection
-            $db_select = mysqli_select_db($conn,'db_phpblog') or die(mysqli_error($conn));
+            $db_select = mysqli_select_db($conn,DBNAME) or die(mysqli_error($conn));
             //SQL Query
             $query = "SELECT * FROM tbl_users WHERE 
                 username ='$username' AND 
@@ -65,7 +66,7 @@
                     $_SESSION['login_success']="Login Successful";
                     $_SESSION['user'] = $username;
                     //Redirect to Home Page
-                    header('location:http://localhost:81/phpblog/admin/index.php');
+                    header('location:'.SITEURL.'admin/index.php');
                 }
                 else
                 {
@@ -73,7 +74,7 @@
                     //echo "Failed to Login";
                     $_SESSION['login_fail']="Failed to Login";
                     //Redirect to Home Page
-                    header('location:http://localhost:81/phpblog/admin/login.php');
+                    header('location:'.SITEURL.'admin/login.php');
                 }
             }
         }

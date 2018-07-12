@@ -2,6 +2,12 @@
     //echo "Update User Action PAge";
     //SESSION START
     session_start();
+    include('../config/constants.php');
+    //Check whether the user is logged in or not
+    if(!isset($_SESSION['user']))
+    {
+        header('location:'.SITEURL.'admin/login.php');
+    }
     if(isset($_POST['submit']))
     {
         //echo "Button Clicked";
@@ -22,11 +28,11 @@
         }
         $updated_at = date('Y-m-d H:i:s');
         
-        //Database Connection
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+        //Connectng Database
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
         
-        //Database SElection
-        $db_select = mysqli_select_db($conn, 'db_phpblog') or die(mysqli_error($conn));
+        //Selecting Database
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         //Query to Update Users
         $query = "UPDATE tbl_users SET 
@@ -48,7 +54,7 @@
             //echo "Updated SUccessfully";
             $_SESSION['update_success'] = "Users Successfully Updated";
             //Redirect to the Users Page
-            header('location:http://localhost:81/phpblog/admin/users.php');
+            header('location:'.SITEURL.'admin/users.php');
         }
         else
         {
@@ -57,7 +63,7 @@
             $_SESSION['update_fail'] = "Failed to Update User";
             
             //Redirect to Users Page
-            header('location:http://localhost:81/phpblog/admin/users.php');
+            header('location:'.SITEURL.'admin/users.php');
         }
     }
     else

@@ -1,8 +1,9 @@
 <?php 
     session_start();
+    include('../config/constants.php');
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
     //echo "Add Category Action page";
     //Check Whether the Submit Button is Clicked or Not
@@ -32,10 +33,11 @@
         }
         $created_at = date('Y-m-d H:i:s');
         
-        //Database Connection
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
-        //DAtabase Selection
-        $db_select = mysqli_select_db($conn,'db_phpblog') or die(mysqli_error($conn));
+        //Connectng Database
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
+        
+        //Selecting Database
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         //Query to Insert Category
         $query = "INSERT INTO tbl_categories SET 
@@ -51,13 +53,13 @@
         {
             //echo "Category Added Successfully";
             $_SESSION['add_success'] = "Category Added Successfully";
-            header('location:http://localhost:81/phpblog/admin/categories.php');
+            header('location:'.SITEURL.'admin/categories.php');
         }
         else
         {
             //echo "Failed to add Category";
             $_SESSION['add_fail'] = "FAiled to Add CAtegory";
-            header('location:http://localhost:81/phpblog/admin/add_category.php');
+            header('location:'.SITEURL.'admin/add_category.php');
         }
         
     }
@@ -65,6 +67,6 @@
     {
         //echo "Button Not Clicked";
         //Redirect to Categories Page
-        header('location:http://localhost:81/phpblog/admin/categories.php');
+        header('location:'.SITEURL.'admin/categories.php');
     }
 ?>

@@ -1,42 +1,17 @@
 <?php
     session_start();
+    include('../config/constants.php');
     //Check whether the user is logged in or not
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Admin Panel for Our Blog</title>
-        
-        <link rel="stylesheet" type="text/css" href="http://localhost:81/phpblog/assets/css/style.css" />
-    </head>
+<?php 
     
-    <body>
-    
-    <!-- Menu Starts From Here -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-                <li>
-                    <a href="users.php">Users</a>
-                </li>
-                <li>
-                    <a href="categories.php">Categories</a>
-                </li>
-                <li>
-                    <a href="blogs.php">Blogs</a>
-                </li>
-                <li>
-                    <a href="logout.php">Log Out</a>
-                </li>
-            </ul>
-        </nav>
-    <!-- Menu Ends From Here -->
+    include('box/header.php');
+?>
+
         
     <!-- Main Content Starts Here -->
     <section class="main">
@@ -97,11 +72,11 @@
             
             <?php 
                 //Displaying All the Users from DAtabase
-                //Database Connect
-                $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+                //Connectng Database
+                $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
                 
-                //DAtabase Selection
-                $db_select = mysqli_select_db($conn, 'db_phpblog');
+                //Selecting Database
+                $db_select = mysqli_select_db($conn,DBNAME);
                 
                 //Query to Display Users
                 $query = "SELECT * FROM tbl_users";
@@ -144,8 +119,8 @@
                                      ?>
                                  </td>
                                 <td>
-                                    <a href="http://localhost:81/phpblog/admin/update_user.php?user_id=<?php echo $user_id; ?>">Edit</a> 
-                                    <a href="http://localhost:81/phpblog/admin/delete_user.php?user_id=<?php echo $user_id; ?>">Delete</a>
+                                    <a href="<?php echo SITEURL; ?>admin/update_user.php?user_id=<?php echo $user_id; ?>">Edit</a> 
+                                    <a href="<?php echo SITEURL; ?>admin/delete_user.php?user_id=<?php echo $user_id; ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php
@@ -168,11 +143,4 @@
     </section>
     <!-- Main Content Starts Here -->
         
-    <!-- Footer Starts Here -->
-    <footer>
-        &copy; 2018, PHP BLOG.
-    </footer>
-    <!-- Footer Starts Here -->
-    
-    </body>
-</html>
+    <?php include('box/footer.php'); ?>

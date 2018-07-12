@@ -1,9 +1,11 @@
 <?php 
     session_start();
+    
+    include('../config/constants.php');
     //Check whether the user is logged in or not
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
     if(isset($_POST['submit']))
     {
@@ -22,11 +24,11 @@
         }
         $updated_at = date('Y-m-d H:i:s');
         
-        //Database Connect
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+        //Connectng Database
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
         
-        //Database SElection
-        $db_select = mysqli_select_db($conn,'db_phpblog') or die(mysqli_error($conn));
+        //Selecting Database
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         $query = "UPDATE tbl_blogs SET 
             blog_title = '$blog_title',
@@ -42,17 +44,17 @@
         if($res == true)
         {
             $_SESSION['update_success'] = "Blog Updated Successfully";
-            header('location:http://localhost:81/phpblog/admin/blogs.php');
+            header('location:'.SITEURL.'admin/blogs.php');
         }
         else
         {
             $_SESSION['update_fail'] = "Failed to Update Blog";
-            header('location:http://localhost:81/phpblog/admin/blogs.php');
+            header('location:'.SITEURL.'admin/blogs.php');
         }
     }
     else
     {
         //echo "Not Clicked";
-        header('location:http://localhost:81/phpblog/admin/blogs.php');
+        header('location:'.SITEURL.'admin/blogs.php');
     }
 ?>

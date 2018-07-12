@@ -1,7 +1,8 @@
 <?php 
     session_start();
+    include('../config/constants.php');
     //Delete all Session
     session_destroy();
     //Redirect to login page
-    header('location:http://localhost:81/phpblog/admin/login.php');
+    header('location:'.SITEURL.'admin/login.php');
 ?>

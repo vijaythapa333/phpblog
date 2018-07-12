@@ -1,42 +1,17 @@
 <?php 
     session_start();
+    include('../config/constants.php');
     //Check whether the user is logged in or not
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Admin Panel for Our Blog</title>
-        
-        <link rel="stylesheet" type="text/css" href="http://localhost:81/phpblog/assets/css/style.css" />
-    </head>
-    
-    <body>
-    
-    <!-- Menu Starts From Here -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-                <li>
-                    <a href="users.php">Users</a>
-                </li>
-                <li>
-                    <a href="categories.php">Categories</a>
-                </li>
-                <li>
-                    <a href="blogs.php">Blogs</a>
-                </li>
-                <li>
-                    <a href="logout.php">Log Out</a>
-                </li>
-            </ul>
-        </nav>
-    <!-- Menu Ends From Here -->
+
+<?php 
+    include('box/header.php');
+?>
+
         
     <!-- Main Content Starts Here -->
     <section class="main">
@@ -71,8 +46,11 @@
                             <?php
                             
                                 //Displaying Categories from Database
-                                $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
-                                $db_select = mysqli_select_db($conn,'db_phpblog') or die(mysqli_error($conn));
+                                //Connectng Database
+                                $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
+                                
+                                //Selecting Database
+                                $db_select = mysqli_select_db($conn,DBNAME);
                                 $query = "SELECT * FROM tbl_categories WHERE is_active=1";
                                 $res = mysqli_query($conn,$query);
                                 if($res==true)
@@ -123,11 +101,4 @@
     </section>
     <!-- Main Content Starts Here -->
         
-    <!-- Footer Starts Here -->
-    <footer>
-        &copy; 2018, PHP BLOG.
-    </footer>
-    <!-- Footer Starts Here -->
-    
-    </body>
-</html>
+    <?php include('box/footer.php'); ?>

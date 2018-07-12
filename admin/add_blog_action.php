@@ -1,8 +1,9 @@
 <?php 
     session_start();
+    include('../config/constants.php');
     if(!isset($_SESSION['user']))
     {
-        header('location:http://localhost:81/phpblog/admin/login.php');
+        header('location:'.SITEURL.'admin/login.php');
     }
     //echo "Add Blog Action Page";
     if(isset($_POST['submit']))
@@ -24,10 +25,11 @@
         $created_at = date('Y-m-d H:i:s');
         
         
-        //Database Connection
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
-        //Database SElection
-        $db_select = mysqli_select_db($conn,'db_phpblog') or die(mysqli_error($conn));
+        //Connectng Database
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
+        
+        //Selecting Database
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         //Insert Query
         $query = "INSERT INTO tbl_blogs SET 
@@ -46,7 +48,7 @@
             //Set Session Message
             $_SESSION['add_success'] = "Blog added successfully.";
             //Redirect to Home Page
-            header('location:http://localhost:81/phpblog/admin/blogs.php');
+            header('location:'.SITEURL.'admin/blogs.php');
         }
         else
         {
@@ -54,7 +56,7 @@
             //Set Session Message
             $_SESSION['add_fail'] = "Failed to add blog.";
             //Redirect to Home Page
-            header('location:http://localhost:81/phpblog/admin/add_blog.php');
+            header('location:'.SITEURL.'admin/add_blog.php');
         }
     }
     else

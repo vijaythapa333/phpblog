@@ -2,6 +2,13 @@
     //echo "Update Category Action PAge";
     //SESSION START
     session_start();
+    include('../config/constants.php');
+    //Check whether the user is logged in or not
+    if(!isset($_SESSION['user']))
+    {
+        header('location:'.SITEURL.'admin/login.php');
+    }
+    
     if(isset($_POST['submit']))
     {
         //echo "Button Clicked";
@@ -29,11 +36,11 @@
         }
         $updated_at = date('Y-m-d H:i:s');
         
-        //Database Connection
-        $conn = mysqli_connect('localhost','root','') or die(mysqli_error());
+        //Connectng Database
+        $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
         
-        //Database SElection
-        $db_select = mysqli_select_db($conn, 'db_phpblog') or die(mysqli_error($conn));
+        //Selecting Database
+        $db_select = mysqli_select_db($conn,DBNAME);
         
         //Query to Update Users
         $query = "UPDATE tbl_categories SET 
@@ -54,7 +61,7 @@
             //echo "Updated SUccessfully";
             $_SESSION['update_success'] = "Category Successfully Updated";
             //Redirect to the Users Page
-            header('location:http://localhost:81/phpblog/admin/categories.php');
+            header('location:'.SITEURL.'admin/categories.php');
         }
         else
         {
@@ -63,7 +70,7 @@
             $_SESSION['update_fail'] = "Failed to Update Category";
             
             //Redirect to Users Page
-            header('location:http://localhost:81/phpblog/admin/categories.php');
+            header('location:'.SITEURL.'admin/categories.php');
         }
     }
     else
