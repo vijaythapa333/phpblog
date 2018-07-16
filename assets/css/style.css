@@ -32,7 +32,12 @@ nav ul li{
     padding: 3%;
     margin: 5% auto;
 }
-
+.main .blog{
+    margin: 2% auto;
+    padding: 2%;
+    border: 1px solid silver;
+    background-color: lightgrey;
+}
 
 /* CSS for FOOTER */
 footer{

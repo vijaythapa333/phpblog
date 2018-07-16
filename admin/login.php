@@ -7,7 +7,7 @@
     <head>
         <title>Admin Panel for Our Blog</title>
         
-        <link rel="stylesheet" type="text/css" href="http://localhost:81/phpblog/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:81/asmtblog/assets/css/style.css" />
     </head>
     
     <body>
