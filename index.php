@@ -31,7 +31,7 @@
                             <br />
                             
                             <p>
-                                Published On: <?php echo $created_at; ?>
+                                Published On: <strong><?php echo substr($created_at,0,10); ?></strong>
                             </p>
                             <br />
                             

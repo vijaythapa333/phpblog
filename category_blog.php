@@ -7,17 +7,16 @@
     <section class="main">
         
         <?php 
-            //Getting Value from GET METHOD
-            if(isset($_GET['blog_id']))
+            //Displaying All Bogs
+            if(isset($_GET['cat_id']))
             {
-                $blog_id = $_GET['blog_id'];
+                $category_id = $_GET['cat_id'];
             }
             else
             {
                 header('location:'.SITEURL);
             }
-            //Displaying All Bogs
-            $query = "SELECT * FROM tbl_blogs WHERE blog_id=$blog_id";
+            $query = "SELECT * FROM tbl_blogs WHERE is_active=1 && category_id = $category_id ORDER BY blog_id DESC";
             //Executing Query
             $res = mysqli_query($conn,$query);
             if($res==true)
@@ -27,7 +26,8 @@
                 if($count_rows>0)
                 {
                     //echo "Blog Added";
-                        $row = mysqli_fetch_assoc($res);
+                    while($row=mysqli_fetch_assoc($res))
+                    {
                         $blog_id = $row['blog_id'];
                         $blog_title = $row['blog_title'];
                         $blog_description = $row['blog_description'];
@@ -44,21 +44,20 @@
                             <br />
                             
                             <p>
-                                <?php echo $blog_description; ?>
+                                <?php echo substr($blog_description,0,100); ?>
                             </p>
                             <br />
                             
-                            
+                            <a href="<?php echo SITEURL; ?>blog_detail.php?blog_id=<?php echo $blog_id; ?>"><button>Read More</button></a>
                         </div>
                         
                         <?php
-                    
+                    }
                 }
                 else
                 {
-                    //echo "Blog Not Added";
-                    //If Blog Not Found Redirect to Home Page
-                    header('location:'.SITEURL);
+                    echo "Blog Not Added";
+                    
                 }
             }
         ?>
