@@ -32,12 +32,21 @@
                         $blog_title = $row['blog_title'];
                         $blog_description = $row['blog_description'];
                         $created_at = $row['created_at'];
+                        $featured_image = $row['featured_image'];
                         ?>
                         
                         <div class="blog">
                             <h1><?php echo strtoupper($blog_title); ?></h1>
                             <br />
-                            
+                            <?php 
+                                if($featured_image !="")
+                                {
+                                    ?>
+                                    <img src="img/<?php echo $featured_image; ?>" style="width: 100%;" />
+                                    <?php
+                                }
+                            ?>
+                            <br />
                             <p>
                                 Published On: <strong><?php echo substr($created_at,0,10); ?></strong>
                             </p>

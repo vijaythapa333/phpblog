@@ -46,6 +46,13 @@
             
             //Now Upload New Image
             $featured_image = $_FILES['img']['name'];
+            
+            //Generating New Image Name
+            $ext = end(explode('.',$featured_image));
+            $new_image = 'ASMT_BLOG_'.rand(000,999).'.'.$ext;
+            
+            $featured_image = $new_image;
+            
             $src = $_FILES['img']['tmp_name'];
             $dst = '../img/'.$featured_image;
             $upload = move_uploaded_file($src,$dst);

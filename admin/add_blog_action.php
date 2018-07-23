@@ -29,6 +29,12 @@
         if($_FILES['featured_image']['name']!="")
         {
             $featured_image = $_FILES['featured_image']['name'];
+            //Generating New Image Name
+            $ext = end(explode('.',$featured_image));
+            $new_image = 'ASMT_BLOG_'.rand(000,999).'.'.$ext;
+            
+            $featured_image = $new_image;
+            
             $src = $_FILES['featured_image']['tmp_name'];
             $dst = '../img/'.$featured_image;
             
@@ -39,6 +45,8 @@
                 header('location:'.SITEURL.'admin/add_blog.php');
                 die();
             }
+            
+            
         }
         else
         {
