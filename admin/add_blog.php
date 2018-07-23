@@ -23,10 +23,15 @@
                 echo $_SESSION['add_fail'];
                 unset($_SESSION['add_fail']);
             }
+            if(isset($_SESSION['upload_fail']))
+            {
+                echo $_SESSION['upload_fail'];
+                unset($_SESSION['upload_fail']);
+            }
         ?>
         <!-- inserting Category Details -->
         
-        <form method="post" action="add_blog_action.php">
+        <form method="post" action="add_blog_action.php" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td>Blog Title</td>
@@ -86,6 +91,13 @@
                     <td>
                         <input type="radio" name="is_active" value="1" /> Yes
                         <input type="radio" name="is_active" value="0" /> No
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Featured Image</td>
+                    <td>
+                        <input type="file" name="featured_image" />
                     </td>
                 </tr>
                 

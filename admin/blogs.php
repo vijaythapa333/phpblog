@@ -43,6 +43,21 @@
                 echo $_SESSION['delete_fail'];
                 unset($_SESSION['delete_fail']);
             }
+            if(isset($_SESSION['delete_img_fail']))
+            {
+                echo $_SESSION['delete_img_fail'];
+                unset($_SESSION['delete_img_fail']);
+            }
+            if(isset($_SESSION['remove_fail']))
+            {
+                echo $_SESSION['remove_fail'];
+                unset($_SESSION['remove_fail']);
+            }
+            if(isset($_SESSION['upload_fail']))
+            {
+                echo $_SESSION['upload_fail'];
+                unset($_SESSION['upload_fail']);
+            }
         ?>
         <table style="width: 100%; text-align: left;">
             <tr>
@@ -80,6 +95,7 @@
                             $blog_id = $row['blog_id'];
                             $blog_title = $row['blog_title'];
                             $is_active = $row['is_active'];
+                            $featured_image = $row['featured_image'];
                             ?>
                             <tr>
                                 <td><?php echo $sn++; ?>.</td>
@@ -98,7 +114,7 @@
                                 </td>
                                 <td>
                                     <a href="<?php echo SITEURL; ?>admin/update_blog.php?blog_id=<?php echo $blog_id; ?>">Edit</a>
-                                    <a href="<?php echo SITEURL; ?>admin/delete_blog.php?blog_id=<?php echo $blog_id; ?>">Delete</a>
+                                    <a href="<?php echo SITEURL; ?>admin/delete_blog.php?blog_id=<?php echo $blog_id; ?>&img=<?php echo $featured_image; ?>">Delete</a>
                                 </td>
                             </tr>
                             <?php

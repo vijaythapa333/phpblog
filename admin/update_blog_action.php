@@ -24,6 +24,44 @@
         }
         $updated_at = date('Y-m-d H:i:s');
         
+        $current_image = $_POST['current_image'];
+        
+        //Checking and updating Image
+        if($_FILES['img']['name']!="")
+        {
+           
+            //Check whether the current image is available or not
+            if($current_image!="")
+            {
+                //Remove Current Image
+                $path = '../img/'.$current_image;
+                $remove = unlink($path);
+                if($remove==false)
+                {
+                    $_SESSION['remove_fail'] = "Failed to Remove Previous Image";
+                    header('location:'.SITEURL.'admin/blogs.php');
+                    die();
+                }
+            }
+            
+            //Now Upload New Image
+            $featured_image = $_FILES['img']['name'];
+            $src = $_FILES['img']['tmp_name'];
+            $dst = '../img/'.$featured_image;
+            $upload = move_uploaded_file($src,$dst);
+            if($upload == false)
+            {
+                $_SESSION['upload_fail'] = "Failed to Upload New Image";
+                header('location:'.SITEURL.'admin/blogs.php');
+                die();
+            }
+        }
+        else
+        {
+            $featured_image = $current_image;
+        }
+        
+              
         //Connectng Database
         $conn = mysqli_connect(LOCALHOST,USERNAME,PASSWORD) or die(mysqli_error());
         
@@ -35,7 +73,8 @@
             blog_description = '$blog_description',
             category_id = '$category_id',
             is_active = '$is_active',
-            updated_at = '$updated_at' 
+            updated_at = '$updated_at',
+            featured_image = '$featured_image' 
             WHERE 
             blog_id = $blog_id
         ";

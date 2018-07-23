@@ -31,6 +31,7 @@
                 $blog_description = $row['blog_description'];
                 $post_category_id = $row['category_id'];
                 $is_active = $row['is_active'];
+                $current_image = $row['featured_image'];
             }
         }
     }
@@ -54,7 +55,7 @@
         ?>
         <!-- inserting Category Details -->
         
-        <form method="post" action="update_blog_action.php">
+        <form method="post" action="update_blog_action.php" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td>Blog Title</td>
@@ -110,6 +111,30 @@
                 </tr>
                 
                 <tr>
+                    <td>Current Image</td>
+                    <td>
+                        <?php 
+                            if($current_image!="")
+                            {
+                                ?>
+                                <img src="<?php echo SITEURL; ?>img/<?php echo $current_image; ?>" style="width: 300px;" />
+                                <?php
+                            }
+                            else
+                            {
+                                echo "No Image";
+                            }
+                        ?>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>New Image</td>
+                    <td><input type="file" name="img" /></td>
+                </tr>
+                
+                <tr>
                     <td>Is Active?</td>
                     <td>
                         <input <?php if($is_active==1){echo "checked='checked'";} ?> type="radio" name="is_active" value="1" /> Yes
@@ -120,6 +145,7 @@
                 
                 <tr>
                     <td colspan="2">
+                        <input type="hidden" name="current_image" value="<?php echo $current_image; ?>" />
                         <input type="hidden" name="blog_id" value="<?php echo $blog_id; ?>" />
                         <input type="submit" name="submit" value="Update Blog" />
                     </td>

@@ -23,6 +23,27 @@
         if($res==true)
         {
             //echo "Deleted Successfully";
+            //Removing File from img Folder
+            if(isset($_GET['img']))
+            {
+                $img = $_GET['img'];
+                if($img!="")
+                {
+                    //Code to Remove image
+                    $path = '../img/'.$img;
+                    $remove = unlink($path);
+                    //Check whether the img deleted successfully or not
+                    if($remove==false)
+                    {
+                        //If failed to delete image
+                        $_SESSION['delete_img_fail']="Failed to Delete Image";
+                        header('location:'.SITEURL.'admin/blogs.php');
+                        die();
+                    }
+                }
+            }
+            
+            
             $_SESSION['delete_success']="Blog Deleted Successfully";
             header('location:'.SITEURL.'admin/blogs.php');
         }
