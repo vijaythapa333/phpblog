@@ -15,4 +15,6 @@ They will also get to know about the database technologies and the SQL query use
 
 ## Instructions to Use
 1. Download or clone this project
-2. Change urls from "localhost:81/" to "localhost/", if you have not changed port no. in XAMPP.
+2. Create Database and Import the Database (Extract database from DB_ASMTBLOG.zip).
+3. Now, go to "config" folder and open constants.php
+4. Then, Change urls from "localhost:81/" to "localhost/", if you have not changed port no. in XAMPP.
